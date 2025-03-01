@@ -20,6 +20,8 @@ class Level:
 
         # Getting all bg
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
+        # Adding the player
+        self.entity_list.append(EntityFactory.get_entity('Player1'))
 
 
     def run(self,):
