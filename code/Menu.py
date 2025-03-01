@@ -24,6 +24,8 @@ class Menu:
         pygame.mixer_music.play(-1)
 
         while True:
+            # DRAW IMAGES AND TEXT
+
             # Specifying the image to render inside the rectangle
             self.window.blit(source=self.surf, dest=self.rect)
             # Adding menu texts
@@ -36,14 +38,16 @@ class Menu:
                 else:
                     self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
 
+            # Updating the screen to render all
+            pygame.display.flip()
 
-            # Check all events
+            # EVENTS
             for event in pygame.event.get():
                 # close
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-                # Key down
+                # On press Key
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN: # Down key
                         if menu_option < len(MENU_OPTION) -1:
@@ -56,8 +60,10 @@ class Menu:
                         else:
                             menu_option = len(MENU_OPTION)
 
-            # Updating the screen to render all
-            pygame.display.flip()
+                    if event.key == pygame.K_RETURN: # Enter key
+                        return MENU_OPTION[menu_option]
+
+
 
     # Adding method to create text
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
