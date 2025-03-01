@@ -5,6 +5,7 @@ COLOR_ORANGE = (255, 128, 0)
 COLOR_WHITE = (255, 255, 255)
 COLOR_YELLOW = (255, 255, 0)
 
+EVENT_ENEMY = pygame.USEREVENT + 1
 # Entity speeds
 ENTITY_SPEED = {
     'Level1Bg0': 0,
@@ -14,8 +15,10 @@ ENTITY_SPEED = {
     'Level1Bg4': 4,
     'Level1Bg5': 5,
     'Level1Bg6': 6,
-    'Player1':3,
-    'Player2':3
+    'Player1': 6,
+    'Player2': 6,
+    'Enemy1': 4,
+    'Enemy2': 3
 }
 
 PLAYER_KEY_UP = {
@@ -41,6 +44,8 @@ PLAYER_KEY_SHOOT = {
     'Player2': pygame.K_LCTRL,
 }
 
+# SPAWN
+SPAWN_TIME = 4000
 # Texts
 MENU_OPTION = ('NEW GAME 1P', 'NEW GAME 2P - COOPERATIVE', 'NEW GAME 2P - COMPETITIVE', 'SCORE', 'EXIT')
 
