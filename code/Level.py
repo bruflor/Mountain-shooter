@@ -4,25 +4,27 @@ import sys
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_WHITE, WIN_HEIGHT
+from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
 
 class Level:
     def __init__(self, window, name, game_mode):
-
+        self.timeout = 20000
         self.window = window
         self.name = name
         self.game_mode = game_mode # 1p, 2p cooperative or 2p competitive
         self.entity_list: list[Entity] = []
-        self.timeout = 20000
+
 
         # Getting all bg
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
         # Adding the player
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-
+        # game mode is 2 players
+        if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
+            self.entity_list.append(EntityFactory.get_entity('Player2'))
 
     def run(self,):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
