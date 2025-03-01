@@ -9,6 +9,3 @@ class Enemy(Entity):
     def move(self):
         # Speed
         self.rect.centerx -= ENTITY_SPEED[self.name]
-        # When the image is on the end of the right corner, put it to restart
-        if self.rect.right <= 0:
-            self.rect.left = WIN_WIDTH
