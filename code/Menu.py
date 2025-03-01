@@ -12,7 +12,7 @@ class Menu:
         # adding a window
         self.window = window
         # uploading to pygame the image
-        self.surf = pygame.image.load('./asset/MenuBg.png')
+        self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
         # Adding a rectangle to display image
         self.rect = self.surf.get_rect(left=0, top=0)
 
