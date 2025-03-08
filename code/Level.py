@@ -16,7 +16,7 @@ from code.Player import Player
 
 
 class Level:
-    def __init__(self, window:Surface, name:str, game_mode:str, player_score:list[int]):
+    def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
         self.timeout = TIMEOUT_LEVEL
         self.window = window
         self.name = name
@@ -24,7 +24,7 @@ class Level:
         self.entity_list: list[Entity] = []
 
         # Getting all bg
-        self.entity_list.extend(EntityFactory.get_entity(self.name+'Bg'))
+        self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
         # Adding the player
         player = EntityFactory.get_entity('Player1')
         player.score = player_score[0]
@@ -37,7 +37,7 @@ class Level:
 
         # Defining enemies by time
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP) # check victory condition
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # check victory condition
 
     def run(self, player_score):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -49,14 +49,16 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
-                if isinstance(ent, (Player, Enemy)): # If it has a shot append to entity list
+                if isinstance(ent, (Player, Enemy)):  # If it has a shot append to entity list
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
                     if ent.name == 'Player1':
-                        self.level_text(14, f'Player 1 - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN, (10, 25))
+                        self.level_text(14, f'Player 1 - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN,
+                                        (10, 25))
                     if ent.name == 'Player2':
-                        self.level_text(14, f'Player 2 - Health: {ent.health} | Score: {ent.score}', COLOR_CYAN, (10, 45))
+                        self.level_text(14, f'Player 2 - Health: {ent.health} | Score: {ent.score}', COLOR_CYAN,
+                                        (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

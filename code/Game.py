@@ -14,15 +14,14 @@ class Game:
         # set a window
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
 
-
     def run(self, ):
         while True:
             score = Score(self.window)
             menu = Menu(self.window)
             menu_return = menu.run()
 
-            if menu_return in [MENU_OPTION[0],MENU_OPTION[1],MENU_OPTION[2]]: # Players
-                player_score = [0,0] # [Player1, Player2]
+            if menu_return in [MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]]:  # Players
+                player_score = [0, 0]  # [Player1, Player2]
 
                 level = Level(self.window, 'Level1', menu_return, player_score)
                 level_return = level.run(player_score)
@@ -33,14 +32,13 @@ class Game:
                         score.save(menu_return, player_score)
                 # if is false we can add a game over screen later
 
-            elif menu_return == MENU_OPTION[3]: # Score
+            elif menu_return == MENU_OPTION[3]:  # Score
                 score.show()
 
-            elif menu_return == MENU_OPTION[4]: # Exit
+            elif menu_return == MENU_OPTION[4]:  # Exit
                 pygame.quit()
                 sys.exit()
 
-
             else:
-                pass
-
+                pygame.quit()
+                sys.exit()
