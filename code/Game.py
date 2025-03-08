@@ -4,6 +4,8 @@ from code.Menu import Menu
 import pygame
 import sys
 
+from code.Score import Score
+
 
 class Game:
     def __init__(self):
@@ -15,6 +17,7 @@ class Game:
 
     def run(self, ):
         while True:
+            score = Score(self.window)
             menu = Menu(self.window)
             menu_return = menu.run()
 
@@ -26,11 +29,17 @@ class Game:
                 if level_return:
                     level = Level(self.window, 'Level2', menu_return, player_score)
                     level_return = level.run(player_score)
+                    if level_return:
+                        score.save(menu_return, player_score)
                 # if is false we can add a game over screen later
+
+            elif menu_return == MENU_OPTION[3]: # Score
+                score.show()
 
             elif menu_return == MENU_OPTION[4]: # Exit
                 pygame.quit()
                 sys.exit()
+
 
             else:
                 pass
