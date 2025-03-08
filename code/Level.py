@@ -24,7 +24,7 @@ class Level:
         self.entity_list: list[Entity] = []
 
         # Getting all bg
-        self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
+        self.entity_list.extend(EntityFactory.get_entity(self.name+'Bg'))
         # Adding the player
         self.entity_list.append(EntityFactory.get_entity('Player1'))
         # game mode is 2 players
